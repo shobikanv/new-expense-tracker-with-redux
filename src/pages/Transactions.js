@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Layout from "./Layout/Layout";
-import ListAccounts from "../components/Accounts/ListAccounts/List";
-import ModalForm from "../components/Accounts/ModalForm";
-import { Button } from "semantic-ui-react";
+import ModalForm from "../components/Transactions/Form/ModalForm";
 import TransactionList from "../components/Transactions/List/TransactionList";
+import Filter from "../components/Transactions/Filter/Form";
 
 const Transactions = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -12,25 +11,22 @@ const Transactions = () => {
     <Layout>
       <div className="container-full-page">
         <div className="container-header">
-          <Button.Group basic>
-            <Button
-              icon="plus"
-              labelPosition="left"
-              content="New"
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            />
-          </Button.Group>
+          <Filter setOpenModal={setOpenModal} />
         </div>
         <div className="accounts-list-wrapper">
           <TransactionList />
         </div>
-        {openModal && <ModalForm isEdit={false} handleClose={()=>{setOpenModal(false)}} account={null}/>}
+        {openModal && (
+          <ModalForm
+            isEdit={false}
+            handleClose={() => {
+              setOpenModal(false);
+            }}
+          />
+        )}
       </div>
     </Layout>
   );
 };
 
-export default  Transactions
-  ;
+export default Transactions;

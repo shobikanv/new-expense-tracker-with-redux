@@ -5,3 +5,12 @@ export const GroupOptions = [
   { key: "group4", text: "Credit", value: "CREDIT" },
   { key: "group5", text: "Asset", value: "ASSET" },
 ];
+
+export const FilterOptions = [
+  { text: "Today", value: "today" },
+  { text: "Yesterday", value: "yesterday" },
+  { text: "Last 7 Days", value: "lastWeek" },
+  { text: "Last 30 Days", value: "lastMonth" },
+  { text: "This Month", value: "thisMonth" },
+  { text: "Custom", value: "custom" },
+];

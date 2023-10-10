@@ -7,7 +7,7 @@ const FormHeader = ({kind, setKind}) => {
     setKind(selectedKind);
   };
 
-  const kinds = ['Expense', 'Transfer', 'Income'];
+  const kinds = ['EXPENSE', 'TRANSFER', 'INCOME'];
 
   return (
     <Menu attached="top" widths={kinds.length}>
@@ -15,9 +15,9 @@ const FormHeader = ({kind, setKind}) => {
         <Menu.Item
           key={kindItem}
           color={
-            kindItem === 'Expense'
+            kindItem === 'EXPENSE'
               ? "red"
-              : kindItem === 'Income'
+              : kindItem === 'INCOME'
               ? "green"
               : "black"
           }

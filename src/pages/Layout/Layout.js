@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <MainHeader />
       <SidebarMenu/>
       <main>
-        <section>{renderChildren()}</section>
+        <section className="container">{renderChildren()}</section>
       </main>
     </>
   );

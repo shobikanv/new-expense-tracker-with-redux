@@ -8,7 +8,7 @@ import TransactionList from "../components/Transactions/List/TransactionList";
 
 const Dashboard = () => {
   return (
-    <Layout>
+    <Layout>   
       <div className="container-full-page">
         <Grid>
           <Grid.Row>

@@ -4,13 +4,13 @@ import Api from "../../lib/api-client";
 const initialState = {
   id: null,
   transactionList: [],
-  
 };
 
-export const getTransactions = createAsyncThunk("transaction/getTransactions", async () => {
-  const response = await Api.get(`/transactions/`);
-  return response;
-});
+export const getTransactions = createAsyncThunk("transaction/getTransactions",async () => {
+    const response = await Api.get(`/transactions/`);
+    return response;
+  }
+);
 
 export const addTransactions = createAsyncThunk("transaction/addTransactions",async ({ params }) => {
     const response = await Api.post(`/transactions/`, params);
@@ -18,10 +18,16 @@ export const addTransactions = createAsyncThunk("transaction/addTransactions",as
   }
 );
 
-export const editAccount = createAsyncThunk("account/editAccount",async ({id, params }) => {
-  const response = await Api.put(`/accounts/${id}/`, params);
-  return response;
-}
+export const editTransactions = createAsyncThunk("transaction/editTransactions",async ({ id, params }) => {
+    const response = await Api.put(`/transactions/${id}/`, params);
+    return response;
+  }
+);
+
+export const deleteTransactions = createAsyncThunk("transaction/deleteTransactions",async ({ id }) => {
+    const response = await Api.delete(`/transactions/${id}/`);
+    return response;
+  }
 );
 
 const transactionSlice = createSlice({

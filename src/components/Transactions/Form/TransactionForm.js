@@ -12,17 +12,19 @@ import {
 import {
   addTransactions,
   getTransactions,
+  editTransactions,
 } from "../../../redux/slices/transactionSlice";
 
 import "./transactionForm.css";
 import { toastMessage } from "../../../lib/common-helper";
+import validationSchema from "./Validation";
 
-const TransactionForm = () => {
+const TransactionForm = ({ transaction, handleClose, isEdit }) => {
+  const transact = transaction ? transaction.transaction : null;
   const dispatch = useDispatch();
   const { tagList } = useSelector(getTagValues);
   const { accountList } = useSelector(getAccountValues);
-  const [kind, setKind] = useState("Income");
-
+  const [kind, setKind] = useState(transact?.transaction_type || "INCOME");
   const initialMasters = async () => {
     if (accountList && accountList.length === 0) {
       await dispatch(getAccounts());
@@ -36,34 +38,46 @@ const TransactionForm = () => {
     initialMasters();
   }, []);
 
-  const handleSubmit = async (values) => {
+  const handleAddSubmit = async (values) => {
     values.transaction_type = kind.toUpperCase();
-
     values.tags = values.tags.map((tagName) => ({ name: tagName }));
-
     const { payload } = await dispatch(addTransactions({ params: values }));
     if (payload && payload.id) {
       toastMessage("Transaction Added Successfully", "success");
       await dispatch(getTransactions());
       formik.resetForm();
       formik.setFieldValue("date", null);
+      handleClose();
     }
   };
 
-  const validationSchema = Yup.object().shape({
-    amount: Yup.number().required("Amount is required"),
-    
-  });
+  const handleEditSubmit = async (values) => {
+    values.transaction_type = kind.toUpperCase();
+    values.tags = values.tags.map((tagName) => ({ name: tagName }));
+    const { payload } = await dispatch(
+      editTransactions({ id: transact?.id, params: values })
+    );
+    if (payload && payload.id) {
+      toastMessage("Transaction Saved Successfully", "success");
+      await dispatch(getTransactions());
+      formik.resetForm();
+      formik.setFieldValue("date", null);
+      handleClose();
+    }
+  };
 
+  const handleSubmit = async (values) => {
+    isEdit ? handleEditSubmit(values) : handleAddSubmit(values);
+  };
   const initialValues = {
     tags: [],
-    transaction_type: null,
-    amount: null,
-    date: null,
+    transaction_type: transact?.transaction_type || null,
+    amount: transact?.amount || null,
+    date: transact?.date || null,
     flag: false,
-    note: "",
-    account: null,
-    destination_account: null,
+    note: transact?.note || "",
+    account: transact?.account || null,
+    destination_account: transact?.destination_account || null,
   };
 
   const formik = useFormik({
@@ -98,7 +112,7 @@ const TransactionForm = () => {
       <FormHeader kind={kind} setKind={setKind} />
       <Segment attached="bottom">
         <Form onSubmit={formik.handleSubmit} className="transaction-form">
-          <div className="fields">
+          <Form.Group>
             <Form.Field width={11} className="mobile-with-margin">
               <label>{kind === "Income" ? `To` : `From`}</label>
               <Dropdown
@@ -113,24 +127,6 @@ const TransactionForm = () => {
                 onChange={handleAccountChange}
               />
             </Form.Field>
-            {kind === "Transfer" && (
-              <Form.Field width={11} className="mobile-with-margin">
-                <label>To</label>
-                <Dropdown
-                  selection
-                  options={accountList.map((account) => ({
-                    key: account.id,
-                    value: account.id,
-                    text: account.name,
-                    description: account.group,
-                  }))}
-                  value={formik.values.destination_account}
-                  onChange={(e, { value }) => {
-                    formik.setFieldValue("destination_account", value);
-                  }}
-                />
-              </Form.Field>
-            )}
             <Form.Field
               width={5}
               className="mobile-with-margin input-right no-label"
@@ -148,11 +144,48 @@ const TransactionForm = () => {
                 label={"USD"}
               />
             </Form.Field>
-          </div>
+          </Form.Group>
+          {kind === "TRANSFER" && (
+            <Form.Group>
+              <Form.Field width={11} className="mobile-with-margin">
+                <label>To</label>
+                <Dropdown
+                  selection
+                  options={accountList.map((account) => ({
+                    key: account.id,
+                    value: account.id,
+                    text: account.name,
+                    description: account.group,
+                  }))}
+                  value={formik.values.destination_account}
+                  onChange={(e, { value }) => {
+                    formik.setFieldValue("destination_account", value);
+                  }}
+                />
+              </Form.Field>
+              <Form.Field
+                width={5}
+                className="mobile-with-margin input-right no-label"
+              >
+                <Input
+                  required
+                  type="number"
+                  min={1}
+                  step={1}
+                  value={formik.values.amount}
+                  onChange={(e, { value }) => {
+                    formik.setFieldValue("amount", value);
+                  }}
+                  labelPosition="right"
+                  label={"USD"}
+                />
+              </Form.Field>
+            </Form.Group>
+          )}
 
           <div className={getGridClassName()}>
             <div className="transaction-form-grid__column-wide">
-              {kind !== "Transfer" && (
+              {kind !== "TRANSFER" && (
                 <div className="transaction-form-grid__field">
                   <Form.Field>
                     <label>Tags</label>
