@@ -20,11 +20,10 @@ import { toastMessage } from "../../../lib/common-helper";
 import validationSchema from "./Validation";
 
 const TransactionForm = ({ transaction, handleClose, isEdit }) => {
-  const transact = transaction ? transaction.transaction : null;
   const dispatch = useDispatch();
   const { tagList } = useSelector(getTagValues);
   const { accountList } = useSelector(getAccountValues);
-  const [kind, setKind] = useState(transact?.transaction_type || "INCOME");
+  const [kind, setKind] = useState(transaction?.transaction_type || "INCOME");
   const initialMasters = async () => {
     if (accountList && accountList.length === 0) {
       await dispatch(getAccounts());
@@ -55,7 +54,7 @@ const TransactionForm = ({ transaction, handleClose, isEdit }) => {
     values.transaction_type = kind.toUpperCase();
     values.tags = values.tags.map((tagName) => ({ name: tagName }));
     const { payload } = await dispatch(
-      editTransactions({ id: transact?.id, params: values })
+      editTransactions({ id: transaction?.id, params: values })
     );
     if (payload && payload.id) {
       toastMessage("Transaction Saved Successfully", "success");
@@ -70,14 +69,14 @@ const TransactionForm = ({ transaction, handleClose, isEdit }) => {
     isEdit ? handleEditSubmit(values) : handleAddSubmit(values);
   };
   const initialValues = {
-    tags: [],
-    transaction_type: transact?.transaction_type || null,
-    amount: transact?.amount || null,
-    date: transact?.date || null,
+    tags: transaction?.tags || [],
+    transaction_type: transaction?.transaction_type || null,
+    amount: transaction?.amount || null,
+    date: transaction?.date || null,
     flag: false,
-    note: transact?.note || "",
-    account: transact?.account || null,
-    destination_account: transact?.destination_account || null,
+    note: transaction?.note || "",
+    account: transaction?.account || null,
+    destination_account: transaction?.destination_account || null,
   };
 
   const formik = useFormik({

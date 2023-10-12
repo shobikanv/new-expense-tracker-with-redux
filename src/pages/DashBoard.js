@@ -6,9 +6,25 @@ import { Grid } from "semantic-ui-react";
 import TransactionForm from "../components/Transactions/Form/TransactionForm";
 import TransactionList from "../components/Transactions/List/TransactionList";
 
+import {
+  getTransactionValues,
+  getTransactions,
+} from "../redux/slices/transactionSlice";
+
+import { useDispatch, useSelector } from "react-redux";
+
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const { transactionList } = useSelector(getTransactionValues);
+
+  const initialMasters = async () => {
+    await dispatch(getTransactions());
+  };
+  useEffect(() => {
+    initialMasters();
+  }, []);
   return (
-    <Layout>   
+    <Layout>
       <div className="container-full-page">
         <Grid>
           <Grid.Row>
@@ -17,7 +33,7 @@ const Dashboard = () => {
             </Grid.Column>
             <Grid.Column computer={10} mobile={16}>
               <TransactionForm />
-              <TransactionList/>
+              <TransactionList transactionList={transactionList} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

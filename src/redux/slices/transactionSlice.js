@@ -5,26 +5,41 @@ const initialState = {
   id: null,
   transactionList: [],
 };
+export const getTransactions = createAsyncThunk(
+  "transaction/getTransactions",
+  async (params) => {
+    let url = "/transactions";
 
-export const getTransactions = createAsyncThunk("transaction/getTransactions",async () => {
-    const response = await Api.get(`/transactions/`);
+    if (params && Object.keys(params).length > 0) {
+      const queryString = new URLSearchParams(params).toString();
+      url += `?${queryString}`;
+    }
+
+    const response = await Api.get(url);
     return response;
   }
 );
 
-export const addTransactions = createAsyncThunk("transaction/addTransactions",async ({ params }) => {
+
+export const addTransactions = createAsyncThunk(
+  "transaction/addTransactions",
+  async ({ params }) => {
     const response = await Api.post(`/transactions/`, params);
     return response;
   }
 );
 
-export const editTransactions = createAsyncThunk("transaction/editTransactions",async ({ id, params }) => {
+export const editTransactions = createAsyncThunk(
+  "transaction/editTransactions",
+  async ({ id, params }) => {
     const response = await Api.put(`/transactions/${id}/`, params);
     return response;
   }
 );
 
-export const deleteTransactions = createAsyncThunk("transaction/deleteTransactions",async ({ id }) => {
+export const deleteTransactions = createAsyncThunk(
+  "transaction/deleteTransactions",
+  async ({ id }) => {
     const response = await Api.delete(`/transactions/${id}/`);
     return response;
   }
