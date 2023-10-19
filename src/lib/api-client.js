@@ -16,7 +16,21 @@ export default class Api extends Component {
   }
 
   static post(url, params) {
-    return this.apiCall(url, params, "POST");
+    const fullUrl = `${this.returnApiUrl()}${url}`;
+    const formData = new FormData();
+
+    formData.append("file", params.file);
+
+    return fetch(fullUrl, {
+      method: "POST",
+      body: formData, 
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("API error:", error);
+      });
   }
 
   static delete(url, params) {

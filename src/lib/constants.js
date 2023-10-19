@@ -14,3 +14,36 @@ export const FilterOptions = [
   { text: "This Month", value: "thisMonth" },
   { text: "Custom", value: "custom" },
 ];
+
+export const ReportOptions = [
+  { text: "Expense & Income", value: "expense_income" },
+  { text: "Expense By Tags", value: "expenses_tags" },
+  { text: "Net Income", value: "net_income" },
+  { text: "Net Worth", value: "net_worth" },
+];
+
+export const TimeSpanOptions = [
+  {
+    value: "Yearly",
+    text: "Yearly",
+  },
+  {
+    value: "Monthly",
+    text: "Monthly",
+  },
+];
+
+export const MonthList = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];

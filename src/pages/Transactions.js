@@ -19,7 +19,7 @@ const Transactions = () => {
     to_date: "",
     tags: '',
     accounts: "",
-  });
+  });           
 
   const { transactionList } = useSelector(getTransactionValues);
 

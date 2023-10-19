@@ -20,7 +20,6 @@ export const getTransactions = createAsyncThunk(
   }
 );
 
-
 export const addTransactions = createAsyncThunk(
   "transaction/addTransactions",
   async ({ params }) => {
@@ -41,6 +40,20 @@ export const deleteTransactions = createAsyncThunk(
   "transaction/deleteTransactions",
   async ({ id }) => {
     const response = await Api.delete(`/transactions/${id}/`);
+    return response;
+  }
+);
+
+export const importTransactions = createAsyncThunk(
+  "transaction/importTransactions",
+  async ({ params }) => {
+    console.log("params", params);
+    const response = await Api.post(
+      `/transactions/import/`,
+      params,
+      "multipart"
+    );
+    console.log("response", response);
     return response;
   }
 );

@@ -11,6 +11,8 @@ import Accounts from "./pages/Accounts";
 import TransactionForm from "./components/Transactions/Form/TransactionForm";
 import TransactionList from "./components/Transactions/List/TransactionList";
 import Transactions from "./pages/Transactions";
+import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 
 function App() {
   const routes = (
@@ -18,6 +20,8 @@ function App() {
       <Route path="/" exact element={<Dashboard />} />
       <Route path="/accounts" exact element={<Accounts />} />
       <Route path="/transactions" exact element={<Transactions />} />
+      <Route path="/reports" exact element={<Reports />} />
+      <Route path="/settings" exact element={<Settings/>}/>
     </Routes>
   );
 

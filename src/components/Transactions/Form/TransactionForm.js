@@ -88,7 +88,6 @@ const TransactionForm = ({ transaction, handleClose, isEdit }) => {
     formik.setFieldValue("account", value);
   };
   const handleTagChange = (event, { value }) => {
-    console.log("Valueee121212", value);
     formik.setFieldValue("tags", value);
   };
   const onTagAdd = async (event, { value }) => {

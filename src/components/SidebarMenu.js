@@ -4,9 +4,11 @@ import { Icon, Menu } from "semantic-ui-react";
 
 const SidebarMenu = () => {
   const menus = [
-    { name: "Dashboard", path: "/", icon:"home" },
-    { name: "Accounts", path: "/accounts", icon:"credit card" },
-    { name: "Transactions", path: "/transactions" ,icon:"exchange"}
+    { name: "Dashboard", path: "/", icon: "home" },
+    { name: "Accounts", path: "/accounts", icon: "credit card" },
+    { name: "Transactions", path: "/transactions", icon: "exchange" },
+    { name: "Reports", path: "/reports", icon: "line chart" },
+    { name: "Settings", path: "/settings", icon: "options" },
   ];
 
   return (

@@ -10,8 +10,6 @@ const Header = ({ setOpenModal, initialValues, setInitialValues }) => {
   const [showCalender, setShowCalender] = useState(false);
   const [selectedOption, setSelectedOption] = useState(FilterOptions[3].value);
 
-  console.log("Update Initial Values", initialValues);
-
   useEffect(() => {
     if (selectedOption === "custom") {
       setShowCalender(true);
