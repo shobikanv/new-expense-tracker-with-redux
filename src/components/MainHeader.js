@@ -3,12 +3,16 @@ import { Icon, Header } from "semantic-ui-react";
 import Logo from "./Logo";
 
 const MainHeader = ({ label = "Dashboard" }) => {
+  const handleRefreshClick = () => {
+    window.location.reload();
+  };
+
   return (
     <header>
       <Header>
-        <Logo/>
+        <Logo />
         <Header.Content as="h2">{label}</Header.Content>
-        <Icon name="refresh" ></Icon>
+        <Icon name="refresh" onClick={handleRefreshClick}></Icon>
       </Header>
     </header>
   );

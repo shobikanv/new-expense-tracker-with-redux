@@ -9,6 +9,7 @@ import { Button, Message } from "semantic-ui-react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toastMessage } from "../../lib/common-helper";
+import CollapsibleSection from "../Collapsible/Collapsible";
 
 const ExportButton = ({ transactionList }) => {
   const handleExport = async () => {
@@ -114,8 +115,12 @@ const UserImport = () => {
   }, []);
   return (
     <>
-      <ExportButton transactionList={transactionList} />
-      <ImportButton />
+      <CollapsibleSection name="import" label="Data Import">
+        <ImportButton />
+      </CollapsibleSection>
+      <CollapsibleSection name="export" label = "Data Export">
+        <ExportButton transactionList={transactionList} />
+      </CollapsibleSection>
     </>
   );
 };
