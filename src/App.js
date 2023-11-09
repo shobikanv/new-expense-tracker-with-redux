@@ -1,15 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainHeader from "./components/MainHeader";
-import SidebarMenu from "./components/SidebarMenu";
-import Layout from "./pages/Layout/Layout";
-import AddAccount from "./components/Accounts/AccountForm";
-import ListAccounts from "./components/Accounts/ListAccounts/List";
 import Dashboard from "./pages/DashBoard";
-import AccountItem from "./components/Accounts/ListAccounts/Items";
 import Accounts from "./pages/Accounts";
-import TransactionForm from "./components/Transactions/Form/TransactionForm";
-import TransactionList from "./components/Transactions/List/TransactionList";
 import Transactions from "./pages/Transactions";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Dropdown, Button } from "semantic-ui-react";
-import { FilterOptions } from "../../../lib/constants";
-import ModalForm from "./ModalForm";
-import { calculateDateRange } from "../../../utils/DateRange";
-import Calender from "./Calender";
+import { FilterOptions } from "../../../../lib/constants";
+import ModalForm from "../ModalForm/ModalForm";
+import { calculateDateRange } from "../../../../utils/DateRange";
+import Calender from "../Calender";
 
 const Header = ({ setOpenModal, initialValues, setInitialValues }) => {
   const [filterModal, setFilterModal] = useState(false);
@@ -82,6 +82,7 @@ const Header = ({ setOpenModal, initialValues, setInitialValues }) => {
           onClick={() => {
             setFilterModal(true);
           }}
+          data-testid="filter"
         />
       </Button.Group>
       {filterModal && (

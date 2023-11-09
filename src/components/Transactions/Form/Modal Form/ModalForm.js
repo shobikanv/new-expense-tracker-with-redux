@@ -1,19 +1,19 @@
 import { Header, Modal } from "semantic-ui-react";
 import { Button } from "semantic-ui-react";
-import TransactionForm from "./TransactionForm";
+import TransactionForm from "../TransactionForm/TransactionForm";
 import {
   deleteTransactions,
   getTransactions,
-} from "../../../redux/slices/transactionSlice";
-import { toastMessage } from "../../../lib/common-helper";
+} from "../../../../redux/slices/transactionSlice";
+import { toastMessage } from "../../../../lib/common-helper";
 import { useDispatch } from "react-redux";
 
 const ModalForm = ({ transaction, handleClose, isEdit }) => {
   const dispatch = useDispatch();
   const removeTransaction = async () => {
-    await dispatch(deleteTransactions({ id:transaction.id }));
+    await dispatch(deleteTransactions({ id: transaction.id }));
     handleClose();
-    toastMessage(`Transaction Deleted Successfully`, 'success');
+    toastMessage(`Transaction Deleted Successfully`, "success");
     await dispatch(getTransactions());
   };
   return (

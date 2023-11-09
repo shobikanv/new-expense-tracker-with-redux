@@ -12,7 +12,7 @@ const MainHeader = ({ label = "Dashboard" }) => {
       <Header>
         <Logo />
         <Header.Content as="h2">{label}</Header.Content>
-        <Icon name="refresh" onClick={handleRefreshClick}></Icon>
+        <Icon name="refresh" onClick={handleRefreshClick} data-testid="refresh-icon"></Icon>
       </Header>
     </header>
   );

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
-import Amount from "../../../utils/Amount";
-import ModalForm from "../ModalForm";
+import Amount from "../../../../utils/Amount";
+import ModalForm from "../../ModalForm/ModalForm";
 
 const AccountItem = ({ account, isEdit }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,11 +16,17 @@ const AccountItem = ({ account, isEdit }) => {
         <Link to={`/transactions/${account.id}`}>{account.name}</Link>
       </div>
       <div className="account-widget-account__balance">
-        <Amount value={account.balance} showColor={true}/>
+        <Amount value={account.balance} showColor={true} />
       </div>
       {isEdit && (
         <div className="account-widget-account__edit">
-          <Button basic circular icon="pencil" onClick={handleEditAccount} />
+          <Button
+            basic
+            circular
+            icon="pencil"
+            onClick={handleEditAccount}
+            data-testid="edit-button"
+          />
         </div>
       )}
       {openModal && (

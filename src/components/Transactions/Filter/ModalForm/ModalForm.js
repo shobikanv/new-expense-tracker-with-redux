@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAccountValues,
   getAccounts,
-} from "../../../redux/slices/accountSlice";
-import { getTagValues, getTags } from "../../../redux/slices/tagSlice";
+} from "../../../../redux/slices/accountSlice";
+import { getTagValues, getTags } from "../../../../redux/slices/tagSlice";
 
 const ModalForm = ({ handleClose, initialValues, setInitialValues }) => {
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const ModalForm = ({ handleClose, initialValues, setInitialValues }) => {
         <Form>
           <Form.Group widths="equal">
             <Form.Field>
-              <label>Account</label>
+              <label htmlFor="account">Account</label>
               <Dropdown
                 multiple
                 selection
@@ -79,12 +79,14 @@ const ModalForm = ({ handleClose, initialValues, setInitialValues }) => {
                   text: account.name,
                   description: account.group,
                 }))}
+                id="account"
+                data-testid="account"
               />
             </Form.Field>
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Field>
-              <label>Tags</label>
+              <label htmlFor="tags">Tags</label>
               <Dropdown
                 multiple
                 selection
@@ -98,6 +100,8 @@ const ModalForm = ({ handleClose, initialValues, setInitialValues }) => {
                   value: tag.name,
                   text: tag.name,
                 }))}
+                id="tags"
+                data-testid="tags"
               />
             </Form.Field>
           </Form.Group>

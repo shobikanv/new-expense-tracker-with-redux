@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Dropdown, Input, Segment } from "semantic-ui-react";
-import FormHeader from "./FormHeader";
-import * as Yup from "yup";
+import FormHeader from "../../FormHeader/FormHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { addTags, getTagValues, getTags } from "../../../redux/slices/tagSlice";
+import {
+  addTags,
+  getTagValues,
+  getTags,
+} from "../../../../redux/slices/tagSlice";
 import {
   getAccounts,
   getAccountValues,
-} from "../../../redux/slices/accountSlice";
+} from "../../../../redux/slices/accountSlice";
 import {
   addTransactions,
   getTransactions,
   editTransactions,
-} from "../../../redux/slices/transactionSlice";
+} from "../../../../redux/slices/transactionSlice";
 
 import "./transactionForm.css";
-import { toastMessage } from "../../../lib/common-helper";
-import validationSchema from "./Validation";
+import { toastMessage } from "../../../../lib/common-helper";
+import validationSchema from "../Validation";
 
 const TransactionForm = ({ transaction, handleClose, isEdit }) => {
   const dispatch = useDispatch();

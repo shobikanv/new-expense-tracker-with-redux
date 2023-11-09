@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
-import ListAccounts from "../components/Accounts/ListAccounts/List";
-import AddAccount from "../components/Accounts/AccountForm";
+import ListAccounts from "../components/Accounts/ListAccounts/List/List";
+import AddAccount from "../components/Accounts/AccountForm/AccountForm";
 import { Grid } from "semantic-ui-react";
-import TransactionForm from "../components/Transactions/Form/TransactionForm";
+import TransactionForm from "../components/Transactions/Form/TransactionForm/TransactionForm";
 import TransactionList from "../components/Transactions/List/TransactionList";
 import CollapsibleSection from "../components/Collapsible/Collapsible";
 import {

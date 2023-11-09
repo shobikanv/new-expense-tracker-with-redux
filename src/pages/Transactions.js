@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout/Layout";
-import ModalForm from "../components/Transactions/Form/ModalForm";
+import ModalForm from "../components/Transactions/Form/Modal Form/ModalForm";
 import TransactionList from "../components/Transactions/List/TransactionList";
-import Filter from "../components/Transactions/Filter/Form";
+import Filter from "../components/Transactions/Filter/Form/Form";
 
 import {
   getTransactionValues,

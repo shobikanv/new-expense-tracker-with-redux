@@ -1,6 +1,6 @@
-import React,{useState} from "react";
-import AccountItem from "./Items";
-import Amount from "../../../utils/Amount";
+import React, { useState } from "react";
+import AccountItem from "../Items/Items";
+import Amount from "../../../../utils/Amount";
 
 const GroupAccounts = ({ group, isEdit }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -12,15 +12,15 @@ const GroupAccounts = ({ group, isEdit }) => {
   return (
     <div className="account-widget-group">
       <div className="account-widget-group__header" onClick={toggleSection}>
-        <span className="account-widget-group__name">{group.name}</span>
+        <span className="account-widget-group__name">{group?.name}</span>
         <span className="account-widget-group__total">
-          <Amount value={group.total} showColor={true} />
+          <Amount value={group?.total} showColor={true} />
         </span>
       </div>
 
       {!isCollapsed &&
-        group.accounts.map((account) => (
-          <AccountItem key={account.id} account={account} isEdit={isEdit} />
+        group?.accounts.map((account) => (
+          <AccountItem key={account.id} account={account} isEdit={isEdit} data-testid="account-item"/>
         ))}
     </div>
   );

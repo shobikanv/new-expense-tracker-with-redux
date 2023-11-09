@@ -1,15 +1,15 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
-import validationSchema from "./Validation";
-import { GroupOptions } from "../../lib/constants";
+import validationSchema from "../Validation";
+import { GroupOptions } from "../../../lib/constants";
 import {
   addAccount,
   editAccount,
   getAccounts,
-} from "../../redux/slices/accountSlice";
+} from "../../../redux/slices/accountSlice";
 import { useDispatch } from "react-redux";
-import { toastMessage } from "../../lib/common-helper";
+import { toastMessage } from "../../../lib/common-helper";
 
 const AccountForm = ({ account, handleClose }) => {
   const dispatch = useDispatch();
@@ -53,9 +53,11 @@ const AccountForm = ({ account, handleClose }) => {
 
   return (
     <Form className="account-form" onSubmit={formik.handleSubmit}>
+      
       <Form.Field>
-        <label>Name</label>
+        <label htmlFor="name">Name</label>
         <input
+          id="name"
           name="name"
           placeholder="Account name"
           value={formik.values.name}
@@ -67,8 +69,9 @@ const AccountForm = ({ account, handleClose }) => {
         )}
       </Form.Field>
       <Form.Field>
-        <label>Group</label>
+        <label htmlFor="group">Group</label>
         <Form.Select
+          id="group"
           name="group"
           options={GroupOptions}
           placeholder="Select a group"
@@ -81,8 +84,9 @@ const AccountForm = ({ account, handleClose }) => {
         )}
       </Form.Field>
       <Form.Field>
-        <label>Balance</label>
+        <label htmlFor="balance">Balance</label>
         <input
+          id="balance"
           type="number"
           name="balance"
           placeholder="Balance"

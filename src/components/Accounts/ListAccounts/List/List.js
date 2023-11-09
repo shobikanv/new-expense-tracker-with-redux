@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"; // Assuming you're using React Router
-import GroupAccounts from "./GroupAccounts";
+import GroupAccounts from "../GroupAccounts/GroupAccounts";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAccounts,
   getAccountValues,
-} from "../../../redux/slices/accountSlice";
+} from "../../../../redux/slices/accountSlice";
 
 const ListAccounts = () => {
   const dispatch = useDispatch();
